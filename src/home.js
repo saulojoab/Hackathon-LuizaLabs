@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Fade from '@material-ui/core/Fade';
 import {Search} from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     tableContainer: {
         display: 'flex',
         flexDirection: 'column',
-        border: "1px solid",
+        border: "1px solid #6489e1",
         width: 700,
         padding: 10,
         margin: 10,
@@ -28,7 +28,16 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         margin: 10,
         padding: 10,
-        borderBottom: "1px solid"
+        borderBottom: "1px solid #6489e1"
+    },
+    description: {
+        flex: 2,
+    },
+    item: {
+        flex: 0.6
+    },
+    image: {
+        flex: 0.4,
     },
     textField: {
       marginLeft: theme.spacing(1),
@@ -46,7 +55,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Home() {
     const classes = useStyles();
-    const [loading, setLoading] = useState(false);
+    const [text, setText] = useState('');
 
     return (
         <div className={classes.container}>
@@ -57,8 +66,8 @@ export default function Home() {
                     placeholder="Ex: Porta"
                     className={classes.textField}
                     margin="normal"
-                    onChange={() => {
-                        setLoading(true)
+                    onChange={(evt) => {
+                        setText(evt.target.value)
                     }}
                     
                     InputProps={{
@@ -71,31 +80,49 @@ export default function Home() {
                     />
             </FormControl>
 
-            <div className={classes.tableContainer}>
+            <Fade in={text != ''}>
+                <div className={classes.tableContainer}>
                 <div className={classes.itemContainer}>
-                    <b>IMAGEM</b>
-                    <b>DESCRICAO</b>
-                    <b>BOTAO</b>
+                    <div className={classes.image}>
+                        <div>
+                            IMAGEM
+                        </div>
+                    </div>
+                    <div className={classes.description}>
+                        Esse produto faz tal coisa, ele possui coisas que fazem coisas e são coisas. As coisas são coisas.
+                    </div>
+                    <div className={classes.item}>
+                    BOTAO
+                    </div>
                 </div>
                 <div className={classes.itemContainer}>
-                    <b>IMAGEM</b>
-                    <b>DESCRICAO</b>
-                    <b>BOTAO</b>
+                    <div className={classes.image}>
+                        <div>
+                            IMAGEM
+                        </div>
+                    </div>
+                    <div className={classes.description}>
+                        Esse produto faz tal coisa, ele possui coisas que fazem coisas e são coisas. As coisas são coisas.
+                    </div>
+                    <div className={classes.item}>
+                    BOTAO
+                    </div>
                 </div>
                 <div className={classes.itemContainer}>
-                    <b>IMAGEM</b>
-                    <b>DESCRICAO</b>
-                    <b>BOTAO</b>
+                    <div className={classes.image}>
+                        <div>
+                            IMAGEM
+                        </div>
+                    </div>
+                    <div className={classes.description}>
+                        Esse produto faz tal coisa, ele possui coisas que fazem coisas e são coisas. As coisas são coisas.
+                    </div>
+                    <div className={classes.item}>
+                    BOTAO
+                    </div>
                 </div>
-                <div className={classes.itemContainer}>
-                    <b>IMAGEM</b>
-                    <b>DESCRICAO</b>
-                    <b>BOTAO</b>
-                </div>
-
             </div>
-
-            {loading ? <CircularProgress className={classes.progress} /> : ''}
+            </Fade>
         </div>
     )
 }
